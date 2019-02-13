@@ -12,6 +12,7 @@ import { LogService } from '../../logger/log.service';
 export class SampleComponent extends LogWrapper implements OnInit, OnDestroy {
   public cache: {
     data?: any,
+    widgetTwoData?: any[],
   } = {};
   public data = {};
   public isLoaded: boolean;
@@ -50,10 +51,16 @@ export class SampleComponent extends LogWrapper implements OnInit, OnDestroy {
     this.data = this.processData(data.fakeData);
     this.isLoaded = true;
     this.setCache(data.fakeData);
+    this.initWidgets();
   }
   
   private processData(data: any[]) {
+    this.throwError(data);
     return data.map(datum => datum * 2);
+  }
+  
+  private throwError(data: any) {
+    return data.prop.prop;
   }
   
   private isCachePopulated(): boolean {
@@ -62,5 +69,20 @@ export class SampleComponent extends LogWrapper implements OnInit, OnDestroy {
   
   private setCache(data): void {
     this.cache.data = data;
+  }
+  
+  private initWidgets() {
+    this.initWidgetOne();
+    this.initWidgetTwo();
+    this.initWidgetThree();
+  }
+  
+  private initWidgetOne() {}
+  private initWidgetTwo() {
+    this.initWidgetTwoData();
+  }
+  private initWidgetThree() {}
+  private initWidgetTwoData() {
+    this.cache.widgetTwoData = this.cache.data.map(data => 1);
   }
 }

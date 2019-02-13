@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --base-href \"https://hanhee-song.github.io/angular-logger/\"",
+    "gh": "npx angular-cli-ghpages --dir=dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
